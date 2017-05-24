@@ -18,12 +18,6 @@ DB_DUMP_FILE_SUFFIX="database.sql"
 # Time in days how long dumps should be saved
 DB_DUMP_SAVE_TIME="7"
 
-echo "DB_USER = ${DB_USER}"
-echo "DB_PASS = ${DB_PASS}"
-echo "DB_DUMP_DIR = ${DB_DUMP_DIR}"
-echo "DB_DUMP_FILE_SUFFIX = ${DB_DUMP_FILE_SUFFIX}"
-echo "DB_DUMP_SAVE_TIME = ${DB_DUMP_SAVE_TIME}"
-
 # Create SQL Dump
 mysqldump -u ${DB_USER} -p${DB_PASS} --all-databases > /tmp/${DB_DUMP_FILE_SUFFIX}
 
