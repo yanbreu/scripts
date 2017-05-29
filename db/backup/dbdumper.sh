@@ -25,7 +25,11 @@ mysqldump -u ${DB_USER} -p${DB_PASS} --all-databases > /tmp/${DB_DUMP_FILE_SUFFI
 mkdir -p ${DB_DUMP_DIR}
 
 # Compess with XZ
-tar -cJf ${DB_DUMP_DIR}/`date +%Y%m%d_%H%M%S`_${DB_DUMP_FILE_SUFFIX}.tar.xz /tmp/${DB_DUMP_FILE_SUFFIX}
+if [ -s "/tmp/${DB_DUMP_FILE_SUFFIX}" ]; then
+        tar -cJf ${DB_DUMP_DIR}/`date +%Y%m%d_%H%M%S`_${DB_DUMP_FILE_SUFFIX}.tar.xz /tmp/${DB_DUMP_FILE_SUFFIX}
+else
+        echo "MySQL Dump failed!"
+fi
 
 # Remove uncompressed file
 rm -f /tmp/${DB_DUMP_FILE_SUFFIX}
