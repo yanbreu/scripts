@@ -1,0 +1,43 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: Teamspeak3
+# Required-Start:  $remote_fs $syslog $time
+# Required-Stop:   $remote_fs $syslog $time
+# Default-Start:   2 3 4 5
+# Default-Stop:    0 1 6
+# Description: Teamspeak 3 Server Autostart
+### END INIT INFO
+
+#######################################################
+#   Script by yanbreu (https://github.com/yanbreu/)   #
+#######################################################
+#       Modify the values below for your needs!       #
+#######################################################
+
+# User
+TS3_USER="ts3"
+# Teamspeak 3 Folder
+TS3_DIR="/home/${TS3_USER}/ts3server/"
+
+#######################################################
+#                   Autostart Script                  #
+#######################################################
+case "$1" in
+start)
+        su ${TS3_USER} -c "${TS3_DIR}/ts3server_startscript.sh start"
+        ;;
+stop)
+        su ${TS3_USER} -c "${TS3_DIR}/ts3server_startscript.sh  stop"
+        ;;
+status)
+        su ${TS3_USER} -c "${TS3_DIR}/ts3server_startscript.sh  status"
+        ;;
+*)
+        echo "Bad usage!"
+        echo "$0 start > Start Server"
+        echo "$0 stop > Stop Server"
+        echo "$0 status > Display Server Status"
+        exit 1
+;;
+esac
+exit 0
